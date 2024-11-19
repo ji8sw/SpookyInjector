@@ -16,12 +16,11 @@
             Spooky Injector
         </TextBlock>
 
-        <!-- First Button -->
-        <Button Width="100" Height="40" Content="Spooky Folder" 
+        <!-- Inject -->
+        <Button Width="100" Height="40" Content="Inject" 
                 Background="#363636" Foreground="White" 
-                Click="FolderOpen_Click"
-                HorizontalAlignment="Center" VerticalAlignment="Center" 
-                Margin="0,-50,0,0">
+                Click="InjectButton_Click"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -34,12 +33,33 @@
             </Button.Template>
         </Button>
 
-        <!-- Second Button -->
-        <Button Width="100" Height="40" Content="Inject" 
+        <!-- Open Spooky Folder -->
+        <Button Width="70" Height="30" Content="Spooky Folder" 
                 Background="#363636" Foreground="White" 
-                Click="InjectButton_Click"
-                HorizontalAlignment="Center" VerticalAlignment="Center" 
-                Margin="0,50,0,0">
+                Click="FolderOpen_Click"
+                HorizontalAlignment="Center" VerticalAlignment="Top" 
+                Margin="0,175,0,0"
+                FontSize="10">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="4">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <!-- Auto Inject Toggle -->
+        <Button Width="70" Height="30" Content="Auto Inject" 
+                Background="#363636" Foreground="White" 
+                Click="ToggleAutoInject_Click"
+                HorizontalAlignment="Center" VerticalAlignment="Top" 
+                Margin="0,218,0,0"
+                FontSize="10"
+                Name="ToggleAutoInject">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"

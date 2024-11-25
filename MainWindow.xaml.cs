@@ -86,6 +86,7 @@ namespace SpookyInjector
                     {
                         Thread.Sleep(5000);
                         if (!Helper.InjectDLL(PID, AutoInjectFile)) MessageBox.Show("Failed to auto inject");
+                        AutoInjectEnabled = false;
                     }
                 }
                 Thread.Sleep(500);

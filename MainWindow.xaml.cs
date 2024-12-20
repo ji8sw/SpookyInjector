@@ -39,14 +39,12 @@ namespace SpookyInjector
                     AutoInjectFile = OpenFileDialog.FileName;
                     AutoInjectEnabled = true;
                     ToggleAutoInject.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#262626"));
-                    MessageBox.Show("toggled on");
                 }
             } else
             {
                 AutoInjectFile = "";
                 AutoInjectEnabled = false;
                 ToggleAutoInject.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#363636"));
-                MessageBox.Show("toggled off");
             }
         }
 

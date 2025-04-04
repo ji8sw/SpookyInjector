@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows.Media;
+using System.IO;
 
 namespace SpookyInjector
 {
@@ -21,7 +22,7 @@ namespace SpookyInjector
 
         private void FolderOpen_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Spooky");
+            Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Baker");
         }
 
         private void ToggleAutoInject_Click(object sender, RoutedEventArgs e)
@@ -54,19 +55,25 @@ namespace SpookyInjector
             OpenFileDialog OpenFileDialog = new OpenFileDialog();
             OpenFileDialog.Filter = "Dynamic Link Libraries (*.dll)|*.dll";
             OpenFileDialog.DefaultExt = ".dll";
+            OpenFileDialog.Title = "Select \"Baker.dll\"";
 
             bool? Result = OpenFileDialog.ShowDialog();
 
             if (Result == true)
             {
                 string Filename = OpenFileDialog.FileName;
+                if (Path.GetFileName(Filename) == "BakerInjector.dll") // user selected the injector dll instead of the cheat dll (common mistake)
+                {
+                    if (MessageBox.Show("This may be the incorrect DLL, please use the other \"Baker.dll\" found on the download page.", "Continue injecting?", MessageBoxButton.YesNo) == MessageBoxResult.No)
+                        return; // user said no to continuing
+                }
 
                 bool Success = false; int PID = 0;
-                Helper.GetProcessIDByName(out Success, out PID, "Phasmophobia");
+                Helper.GetProcessIDByName(out Success, out PID, "Schedule I");
                 if (Success)
                 {
                     if (!Helper.InjectDLL(PID, Filename)) MessageBox.Show("Failed to inject");
-                } else MessageBox.Show("Failed to find Phasmophobia, is the game running?");
+                } else MessageBox.Show("Failed to find Schedule I, is the game running?");
             }
         }
 
@@ -77,9 +84,9 @@ namespace SpookyInjector
                 if (AutoInjectEnabled && AutoInjectFile.Length != 0)
                 {
                     bool Success = false; int PID = 0;
-                    Helper.GetProcessIDByName(out Success, out PID, "Phasmophobia");
+                    Helper.GetProcessIDByName(out Success, out PID, "Schedule I");
                     if (Success) Thread.Sleep(5000);
-                    Helper.GetProcessIDByName(out Success, out PID, "Phasmophobia"); // to make sure its still open
+                    Helper.GetProcessIDByName(out Success, out PID, "Schedule I"); // to make sure its still open
                     if (Success && AutoInjectEnabled)
                     {
                         Thread.Sleep(5000);

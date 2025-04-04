@@ -7,15 +7,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <Company>Spooky</Company>
-    <Product>Spooky Injector</Product>
+    <Product>Baker Injector</Product>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="BakerLogoTBG.png" />
     <None Remove="SpookyLogoTBG.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="SpookyLogoTBG.png" />
+    <Resource Include="BakerLogoTBG.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
